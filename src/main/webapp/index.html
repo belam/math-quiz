@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>Math Quiz</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css"/>
+        <script type="text/javascript">
+            var dojoConfig = {
+                async : true,
+                debug : true,
+                baseUrl : "./scripts/",
+                packages : [
+                    {
+                        name : "quiz",
+                        location : "quiz"
+                    }
+                ]
+            };
+        </script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+        <script type="text/javascript">
+            require([
+                "quiz/app",
+                "dojo/domReady!"
+            ], function(App){
+                var app = new App({}, "mainContent");
+                app.startup();
+            });
+        </script>        
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body class="claro">
+        <div id="mainContent"></div>
     </body>
 </html>
