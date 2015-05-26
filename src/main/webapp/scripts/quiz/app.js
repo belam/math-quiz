@@ -23,16 +23,24 @@ define([
             this.bc = new BorderContainer({
                 style : "height:100%; width:100%;"
             }, this.contentNode);
+            
+            this.top = new ContentPane({
+                region : "top",
+                content : "Top Pane"
+            });
+            
             this.left = new ContentPane({
                 region : "left",
                 style : "width:30%;"
             }, this.leftNode);
+            
             this.center = new ContentPane({
                 region : "center",
                 content : "Center",
                 style : "width:70%;"
             }, this.centerNode);
             
+            this.bc.addChild(this.top);
             this.bc.addChild(this.left);
             this.bc.addChild(this.center);
             this.foo.innerHTML = "Left by attach point";
