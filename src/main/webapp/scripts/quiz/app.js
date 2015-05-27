@@ -62,7 +62,7 @@ define([
             
             this.top = new ContentPane({
                 region : "top",
-                content : "Top Pane"
+                content : "Math Quiz"
             });
             
             this.left = new ContentPane({

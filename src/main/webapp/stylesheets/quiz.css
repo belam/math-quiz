@@ -3,7 +3,7 @@ html, body, .quiz {
     height: 99%;
 }
 
-.range .start, .range .end {
+.range .start, .range .end, .range .types {
     float: left;
     padding: 10px;
 }
@@ -19,5 +19,12 @@ html, body, .quiz {
 }
 .range input {
     margin-top: 5px;
+}
+.range .lbl{
+    margin-bottom: 5px;
+}
+.start, .end, .types {
+    border: 1px solid black;
+    margin: 5px;
 }
 
