@@ -27,4 +27,13 @@ html, body, .quiz {
     border: 1px solid black;
     margin: 5px;
 }
+.actions {
+    clear: both;
+    margin: 10px;
+}
+.actions button {
+    width: 75px;
+    float: right;
+    margin: 7px;
+}
 
