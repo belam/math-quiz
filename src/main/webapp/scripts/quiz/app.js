@@ -1,22 +1,58 @@
 define([
     "dojo/_base/declare",
     "dojo/_base/lang",
+    "dojo/dom-construct",
     "dijit/layout/BorderContainer",
     "dijit/layout/ContentPane",
     "dijit/_TemplatedMixin",
     "dijit/_WidgetBase",
     "dojo/text!./templates/App.html"
 ], function(
-    declare, lang, BorderContainer, ContentPane, TemplatedMixin, WidgetBase, template
+    declare, lang, construct, BorderContainer, ContentPane, TemplatedMixin, 
+    WidgetBase, template
 ){
     return declare("quiz.app", [WidgetBase, TemplatedMixin], {
         
         baseClass : "quiz",
         templateString : template,
+        intStart : 0,
+        intEnd : 12,
         
         postCreate : function(){
             this._buildLayout();
+            this._buildRange();
             this.inherited(arguments);
+        },
+        
+        _buildRange : function(){
+            var i;
+            for (i=this.intStart; i<=this.intEnd; i++){
+                construct.create("input", {
+                    id : "s"+i,
+                    name : "startInt",
+                    type : "radio",
+                    value : i,
+                    checked : i === this.intStart ? "checked" : false
+                }, this.rangeFromNode, "last");
+                
+                construct.create("label", {
+                    for : "s"+i,
+                    innerHTML : i
+                }, this.rangeFromNode, "last");
+                
+                construct.create("input", {
+                    id : "e"+i,
+                    name : "endInt",
+                    type : "radio",
+                    value : i,
+                    checked : i === this.intStart ? "checked" : false
+                }, this.rangeToNode, "last");
+                
+                construct.create("label", {
+                    for : "e"+i,
+                    innerHTML : i
+                }, this.rangeToNode, "last");                
+            }
         },
         
         _buildLayout : function(){
@@ -43,7 +79,6 @@ define([
             this.bc.addChild(this.top);
             this.bc.addChild(this.left);
             this.bc.addChild(this.center);
-            this.foo.innerHTML = "Left by attach point";
             
             this.bc.startup();
             this.inherited(arguments);

@@ -3,3 +3,21 @@ html, body, .quiz {
     height: 99%;
 }
 
+.range .start, .range .end {
+    float: left;
+    padding: 10px;
+}
+.range input, .range label {
+    float: left;
+}
+.range label + input {
+    clear: both;
+}
+.range label {
+    margin-top: 3px;
+    margin-left: 5px;
+}
+.range input {
+    margin-top: 5px;
+}
+
