@@ -6,10 +6,11 @@ define([
     "dijit/layout/ContentPane",
     "dijit/_TemplatedMixin",
     "dijit/_WidgetBase",
-    "dojo/text!./templates/App.html"
+    "dojo/text!./templates/App.html",
+    "quiz/FlashCard"
 ], function(
     declare, lang, construct, BorderContainer, ContentPane, TemplatedMixin, 
-    WidgetBase, template
+    WidgetBase, template, FlashCard
 ){
     return declare("quiz.app", [WidgetBase, TemplatedMixin], {
         
@@ -19,9 +20,22 @@ define([
         intEnd : 12,
         
         postCreate : function(){
+            this.inherited(arguments);
+            
             this._buildLayout();
             this._buildRange();
-            this.inherited(arguments);
+            
+            this.foo();            
+        },
+        
+        foo : function(){
+            this.card = new FlashCard({
+                topNumber : 9,
+                bottomNumber : 6,
+                operator : "+"
+            });
+            
+            this.center.addChild(this.card);
         },
         
         _buildRange : function(){
