@@ -2,6 +2,8 @@ define([
     "dojo/_base/declare",
     "dojo/_base/lang",
     "dojo/dom-construct",
+    "dojo/on",
+    "dojo/query",
     "dijit/layout/BorderContainer",
     "dijit/layout/ContentPane",
     "dijit/_TemplatedMixin",
@@ -9,7 +11,7 @@ define([
     "dojo/text!./templates/App.html",
     "quiz/FlashCard"
 ], function(
-    declare, lang, construct, BorderContainer, ContentPane, TemplatedMixin, 
+    declare, lang, construct, on, query, BorderContainer, ContentPane, TemplatedMixin, 
     WidgetBase, template, FlashCard
 ){
     return declare("quiz.app", [WidgetBase, TemplatedMixin], {
@@ -24,8 +26,30 @@ define([
             
             this._buildLayout();
             this._buildRange();
+            this._setupHandles();
+            
             
             this.foo();            
+        },
+        
+        _setupHandles : function(){
+            on(this.btnStart, "click", lang.hitch(this, this._startQuiz));
+        },
+        
+        _startQuiz : function(){
+            this.lowerBound = this._getRange("input[name=startInt]");
+            this.upperBound = this._getRange("input[name=endInt]");
+            console.log(this.lowerBound +"|"+ this.upperBound);
+        },
+        
+        _getRange : function(classString){
+            var int, rng = query(classString, this.domNode);
+            rng.forEach(function(node){
+                if (node.checked){
+                    int = node.value;
+                }
+            });
+            return int;
         },
         
         foo : function(){
